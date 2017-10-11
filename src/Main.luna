@@ -1,0 +1,41 @@
+import Std.Base
+import Std.Geo
+
+def getElectionData:
+    «3»readFile1 = readFile "data/us_election.json"
+    «4»parseJSON1 = JSON.parse readFile1
+    «5»fromObject1 = parseJSON1 . fromObject
+    «6»map1 = fromObject1 . map .fromText
+    «7»toList1 = map1 . toList
+    toList1
+
+def getStateGeometries:
+    «18»readFile1 = readFile "data/states.json"
+    «19»parseJSON1 = JSON.parse readFile1
+    «20»lookup1 = parseJSON1 . lookup "features" . fromJust . toList
+    «21»map1 = lookup1 . map (feature: «22»(feature . lookup "properties" . fromJust . lookupText "name", feature . lookup "geometry" . fromJust))
+    «23»fromList1 = map1 . fold Tip ((k,v): m: «24»m.insert k v)
+    fromList1
+
+def makeStyle item:
+    «17»party = item.second
+    «10»baseStyle = Map . empty . insert «31»"color" "white".toJSON . insert "opacity" 1.toJSON . insert "dashArray" "3".toJSON . insert "fillOpacity" 0.7.toJSON
+    «11»insert1 = baseStyle . insert "fillColor" (if party == "D" then "#0000FF" else "#FF0000").toJSON
+    «12»toJSON1 = insert1 . toJSON
+    toJSON1
+
+def makeFeature stateGeometries item:
+    «16»style = makeStyle item
+    «26»geo = stateGeometries . lookup item.first . fromJust
+    «27»props = Tip . insert "style" style
+    «28»feature = GeoJSONFeature props geo
+    feature
+
+def main:
+    «8»getElectionData1 = getElectionData
+    «25»stateGeometries = getStateGeometries
+    «29»each1 = getElectionData1 . each (makeFeature stateGeometries)
+    «30»geojsonfeaturecollection1 = GeoJSONFeatureCollection each1
+    None
+
+### META {"metas":[{"marker":8,"meta":{"_displayResult":false,"_selectedVisualizer":null,"_position":{"fromPosition":{"_vector2_y":-208,"_vector2_x":-208}}}},{"marker":25,"meta":{"_displayResult":false,"_selectedVisualizer":null,"_position":{"fromPosition":{"_vector2_y":64,"_vector2_x":16}}}},{"marker":29,"meta":{"_displayResult":false,"_selectedVisualizer":null,"_position":{"fromPosition":{"_vector2_y":-208,"_vector2_x":208}}}},{"marker":30,"meta":{"_displayResult":true,"_selectedVisualizer":null,"_position":{"fromPosition":{"_vector2_y":-208,"_vector2_x":560}}}},{"marker":18,"meta":{"_displayResult":true,"_selectedVisualizer":["base: text","base/text/text.html"],"_position":{"fromPosition":{"_vector2_y":0,"_vector2_x":-192}}}},{"marker":19,"meta":{"_displayResult":true,"_selectedVisualizer":["base: json","base/json/json.html"],"_position":{"fromPosition":{"_vector2_y":0,"_vector2_x":96}}}},{"marker":20,"meta":{"_displayResult":true,"_selectedVisualizer":["base: json","base/json/json.html"],"_position":{"fromPosition":{"_vector2_y":0,"_vector2_x":368}}}},{"marker":21,"meta":{"_displayResult":true,"_selectedVisualizer":["base: json","base/json/json.html"],"_position":{"fromPosition":{"_vector2_y":0,"_vector2_x":560}}}},{"marker":22,"meta":{"_displayResult":false,"_selectedVisualizer":null,"_position":{"fromPosition":{"_vector2_y":0,"_vector2_x":0}}}},{"marker":23,"meta":{"_displayResult":false,"_selectedVisualizer":["base: json","base/json/json.html"],"_position":{"fromPosition":{"_vector2_y":0,"_vector2_x":704}}}},{"marker":24,"meta":{"_displayResult":false,"_selectedVisualizer":null,"_position":{"fromPosition":{"_vector2_y":0,"_vector2_x":0}}}},{"marker":16,"meta":{"_displayResult":false,"_selectedVisualizer":["base: json","/Users/marcinkostrzewa/code/luna-studio/luna-studio/atom/lib/visualizers/base/json/json.html"],"_position":{"fromPosition":{"_vector2_y":-336,"_vector2_x":416}}}},{"marker":26,"meta":{"_displayResult":false,"_selectedVisualizer":["base: json","/Users/marcinkostrzewa/code/luna-studio/luna-studio/atom/lib/visualizers/base/json/json.html"],"_position":{"fromPosition":{"_vector2_y":-128,"_vector2_x":400}}}},{"marker":27,"meta":{"_displayResult":false,"_selectedVisualizer":["base: json","/Users/marcinkostrzewa/code/luna-studio/luna-studio/atom/lib/visualizers/base/json/json.html"],"_position":{"fromPosition":{"_vector2_y":-336,"_vector2_x":640}}}},{"marker":28,"meta":{"_displayResult":false,"_selectedVisualizer":["base: json","/Users/marcinkostrzewa/code/luna-studio/luna-studio/atom/lib/visualizers/base/json/json.html"],"_position":{"fromPosition":{"_vector2_y":-208,"_vector2_x":752}}}},{"marker":17,"meta":{"_displayResult":false,"_selectedVisualizer":["base: json","/Users/marcinkostrzewa/code/luna-studio/luna-studio/atom/lib/visualizers/base/json/json.html"],"_position":{"fromPosition":{"_vector2_y":-208,"_vector2_x":288}}}},{"marker":10,"meta":{"_displayResult":false,"_selectedVisualizer":null,"_position":{"fromPosition":{"_vector2_y":-368,"_vector2_x":528}}}},{"marker":11,"meta":{"_displayResult":true,"_selectedVisualizer":null,"_position":{"fromPosition":{"_vector2_y":-208,"_vector2_x":656}}}},{"marker":12,"meta":{"_displayResult":false,"_selectedVisualizer":null,"_position":{"fromPosition":{"_vector2_y":-208,"_vector2_x":976}}}},{"marker":3,"meta":{"_displayResult":true,"_selectedVisualizer":["base: json","base/json/json.html"],"_position":{"fromPosition":{"_vector2_y":-48,"_vector2_x":-1024}}}},{"marker":4,"meta":{"_displayResult":true,"_selectedVisualizer":["base: json","base/json/json.html"],"_position":{"fromPosition":{"_vector2_y":-48,"_vector2_x":-624}}}},{"marker":5,"meta":{"_displayResult":true,"_selectedVisualizer":["base: json","base/json/json.html"],"_position":{"fromPosition":{"_vector2_y":-48,"_vector2_x":-336}}}},{"marker":6,"meta":{"_displayResult":false,"_selectedVisualizer":["base: json","base/json/json.html"],"_position":{"fromPosition":{"_vector2_y":-48,"_vector2_x":-48}}}},{"marker":7,"meta":{"_displayResult":true,"_selectedVisualizer":["base: json","base/json/json.html"],"_position":{"fromPosition":{"_vector2_y":-48,"_vector2_x":384}}}}]}

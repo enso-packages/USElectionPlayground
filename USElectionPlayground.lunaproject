@@ -1,0 +1,39 @@
+modulesSettings:
+  src/Main.luna:
+    typeRepToVisMap:
+    - - tag: TCons
+        contents:
+        - Text
+        - []
+      - - ! 'base: text'
+        - base/text/text.html
+    - - tag: TCons
+        contents:
+        - GeoJSONFeatureCollection
+        - []
+      - - ! 'map: GeoJSON'
+        - map/geojson.html
+    breadcrumbsSettings:
+    - - items: []
+      - breadcrumbCameraSettings:
+          logicalToScreen: ! '[[1.0,0.0,0.0,0.0],[0.0,1.0,0.0,0.0],[0.0,0.0,1.0,0.0],[-614.0,6.0,0.0,1.0]]'
+          screenToLogical: ! '[[1.0,0.0,0.0,0.0],[0.0,1.0,0.0,0.0],[0.0,0.0,1.0,0.0],[614.0,-6.0,0.0,1.0]]'
+          lastInverse: 0
+    - - items:
+        - getElectionData
+      - breadcrumbCameraSettings:
+          logicalToScreen: ! '[[1.0,0.0,0.0,0.0],[0.0,1.0,0.0,0.0],[0.0,0.0,1.0,0.0],[1014.0,65.0,0.0,1.0]]'
+          screenToLogical: ! '[[1.0,0.0,0.0,0.0],[0.0,1.0,0.0,0.0],[0.0,0.0,1.0,0.0],[-1014.0,-65.0,0.0,1.0]]'
+          lastInverse: 0
+    - - items:
+        - getStateGeometries
+      - breadcrumbCameraSettings:
+          logicalToScreen: ! '[[1.0,0.0,0.0,0.0],[0.0,1.0,0.0,0.0],[0.0,0.0,1.0,0.0],[136.5,-1.0,0.0,1.0]]'
+          screenToLogical: ! '[[1.0,0.0,0.0,0.0],[0.0,1.0,0.0,0.0],[0.0,0.0,1.0,0.0],[-136.5,1.0,0.0,1.0]]'
+          lastInverse: 0
+    - - items:
+        - main
+      - breadcrumbCameraSettings:
+          logicalToScreen: ! '[[1.0,0.0,0.0,0.0],[0.0,1.0,0.0,0.0],[0.0,0.0,1.0,0.0],[-502.0,144.0,0.0,1.0]]'
+          screenToLogical: ! '[[1.0,0.0,0.0,0.0],[0.0,1.0,0.0,0.0],[0.0,0.0,1.0,0.0],[502.0,-144.0,0.0,1.0]]'
+          lastInverse: 0
