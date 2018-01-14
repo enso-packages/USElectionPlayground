@@ -24,8 +24,8 @@ modulesSettings:
     breadcrumbsSettings:
     - - items: []
       - breadcrumbCameraSettings:
-          logicalToScreen: ! '[[1.0,0.0,0.0,0.0],[0.0,1.0,0.0,0.0],[0.0,0.0,1.0,0.0],[-261.0,23.0,0.0,1.0]]'
-          screenToLogical: ! '[[1.0,0.0,0.0,0.0],[0.0,1.0,0.0,0.0],[0.0,0.0,1.0,0.0],[261.0,-23.0,0.0,1.0]]'
+          logicalToScreen: ! '[[1.0,0.0,0.0,0.0],[0.0,1.0,0.0,0.0],[0.0,0.0,1.0,0.0],[-233.0,-20.0,0.0,1.0]]'
+          screenToLogical: ! '[[1.0,0.0,0.0,0.0],[0.0,1.0,0.0,0.0],[0.0,0.0,1.0,0.0],[233.0,20.0,0.0,1.0]]'
           lastInverse: 0
     - - items:
         - getElectionData
